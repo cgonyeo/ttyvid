@@ -69,24 +69,11 @@ resultsscreen = do
         ui <- hBox lftui =<< hFixed 80 rtui
         fg <- newFocusGroup
 
-        addToRadioGroup rg cb1
-        addToRadioGroup rg cb2
-        addToRadioGroup rg cb3
-        addToRadioGroup rg cb4
-        addToRadioGroup rg cb5
-        addToRadioGroup rg cb6
-        addToRadioGroup rg cb7
-
+        forM_ [cb1,cb2,cb3,cb4,cb5,cb6,cb7] (\cb -> addToRadioGroup rg cb)
         setCheckboxChecked cb1
 
         addToFocusGroup fg lst
-        addToFocusGroup fg cb1
-        addToFocusGroup fg cb2
-        addToFocusGroup fg cb3
-        addToFocusGroup fg cb4
-        addToFocusGroup fg cb5
-        addToFocusGroup fg cb6
-        addToFocusGroup fg cb7
+        forM_ [cb1,cb2,cb3,cb4,cb5,cb6,cb7] (\widget -> addToFocusGroup fg widget)
 
         return (ui, fg, lst, label, (RightPane title duration uploaded uploader description plays likes numcomments))
 
